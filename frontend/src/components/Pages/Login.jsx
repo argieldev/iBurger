@@ -1,8 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+
+    if (user) {
+      navigate("/dashboard");
+    }
+  }, []);
 
   function handleLogin(event) {
     event.preventDefault();
@@ -25,7 +35,7 @@ function Login() {
 
         if (data.success) {
           localStorage.setItem("user", JSON.stringify(data.user));
-          console.log("saved login");
+          navigate("/dashboard");
         }
       })
       .catch((error) => {

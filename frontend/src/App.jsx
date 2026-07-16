@@ -1,17 +1,27 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Login from "./components/Pages/Login";
+import Dashboard from "./components/Pages/Dashboard";
+import Landing from "./components/Pages/LandingPage";
 
 function App() {
-  return(
+  return (
     <>
-      <div>
+      <BrowserRouter>
         <div>
-          {/* Nav here */}
+          <div>
+            {/* Nav here */}
 
-          <main>
-            <Login />
-          </main>
+            <main>
+              <Routes>
+                <Route path="/" element={<Landing />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+              </Routes>
+            </main>
+          </div>
         </div>
-      </div>
+      </BrowserRouter>
     </>
   );
 }
